@@ -1,0 +1,48 @@
+
+<ng-container *ngIf="product$ | async as product">
+      <div class="rating" *ngIf="product.averageRating">
+        <cx-star-rating [rating]="product?.averageRating"></cx-star-rating>
+    
+        <div class="count">({{ product?.numberOfReviews }})</div>
+    
+        <button
+          *ngIf="reviewsTabAvailable | async"
+          class="btn btn-link cx-action-link"
+          (click)="showReviews()"
+          [attr.aria-label]="
+            'productSummary.showReviewsDetailed'
+              | cxTranslate
+                : {
+                    rating: product.averageRating | number: '1.0-1',
+                    count: product?.numberOfReviews
+                  }
+          "
+        >
+          {{ 'productSummary.showReviews' | cxTranslate }}
+        </button>
+      </div>
+      <div class="rating" *ngIf="!product.averageRating">
+        {{ 'productDetails.noReviews' | cxTranslate }}
+      </div>
+      <div class="code">
+        {{ 'productSummary.id' | cxTranslate }} {{ product?.code }}
+      </div>
+    </ng-container>
+    
+
+<p>productintrocustomcomponent works!</p>
+
+<img (click)="like()" src="https://img.icons8.com/external-those-icons-fill-those-icons/24/000000/external-like-feedback-those-icons-fill-those-icons.png"/>
+ <div *ngIf="increment !== 0">
+    <span>{{increment}}</span>
+</div>
+&nbsp;
+
+<img (click)="dislike()" src="https://img.icons8.com/ios-glyphs/30/000000/poor-quality.png"/>
+<div *ngIf="decrement !== 0">
+      <span>{{decrement}}</span>
+</div>
+
+<button class="btn btn-secondary" (click)="showGlobalMessage()">Show Global Message</button> &nbsp;
+
+<button class="btn btn-secondary" (click)="showModal()">Show Modal</button>
